@@ -3,10 +3,6 @@ import firebase from '../firebase'
 
 class Form extends Component {
 
-    updateData() {
-        this.props.updateData()
-    }
-
     addContact = (e) => {
         e.preventDefault()
         const newContact = {
@@ -24,15 +20,10 @@ class Form extends Component {
                 // remettre à zero le formulaire
                 document.getElementById('addContact').reset()
                 // NB : on aurait pu gérer un state pour ce composant Form et remettre le state à vide
-
-                // raffraichir la page principale
-                this.updateData()
             })
             .catch(err => {
                 console.log("Erreur sur création d'un nouveau contact en base : ", err)
             })
-
-
     }
 
     render() {
@@ -51,7 +42,7 @@ class Form extends Component {
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="email" type="text" className="validate" />
+                            <input id="email" type="email" className="validate" />
                             <label htmlFor="email">Email</label>
                         </div>
                         <div className="input-field col s6">

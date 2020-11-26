@@ -10,8 +10,6 @@ const Single = (props) => {
         db.collection('contacts').doc(id).delete()
             .then(() => {
                 console.log("Suppression du contact effectuée en base, id=", id)
-                // rafraichir l'écran principal
-                props.updateData()
             })
             .catch(err => {
                 console.log("Erreur sur suppression d'un contact en base : ", err)
