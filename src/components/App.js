@@ -8,12 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { contacts: [] };
+
+    this.updateData = this.updateData.bind(this)
+
   }
 
   updateData() {
     const db = firebase.firestore()
-    const settings = { timestampsInSnapshot: true }
-    db.settings(settings)
     db.collection('contacts').get()
       .then(snapshot => {
         let contacts = []
@@ -25,7 +26,7 @@ class App extends Component {
         this.setState({contacts: contacts})
       })
       .catch(err => {
-        console.log('Erreur : ', err)
+        console.log('Erreur sur la lecture des contacts en base : ', err)
       })
   }
 
@@ -44,8 +45,8 @@ class App extends Component {
           </nav>
         </div>
         <div>
-          <Form />
-          <Grid items={this.state.contacts} />
+          <Form updateData={this.updateData}/>
+          <Grid items={this.state.contacts} updateData={this.updateData} />
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ import Single from './Single';
 class Grid extends Component {
     renderList() {
         return this.props.items.map((item, i) => (
-            <Single key={i+1} item={item}/>
+            <Single key={i+1} item={item} updateData={this.props.updateData}/>
         ));
     }
     render() { 
